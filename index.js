@@ -1010,7 +1010,7 @@ let config = {};
 module.exports.datasource = datasource;
 module.exports = (conn, table) => {
     if(table){
-        config = conn.config;
+        config = conn.config.connectionConfig;
         let dbStr = conn.config.connectionConfig;
         if(conn.config.connectionConfig){
             dbStr = conn.config.connectionConfig.database;
