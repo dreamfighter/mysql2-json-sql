@@ -1,6 +1,6 @@
 {
   "name": "mysql2-json-sql",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "The idea is migrating from nosql db to relational db without any changes,\n using json as query and result",
   "main": "index.js",
   "scripts": {

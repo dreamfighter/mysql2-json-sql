@@ -227,6 +227,7 @@ let Query = class{
         //var or = ""
         let wh = "1=1"
         const ff = function (selection, operator, opPrefix){
+            let $lt;
             const func = ff;
 
             let op = "AND";
@@ -298,29 +299,29 @@ let Query = class{
                         var $gt = selection[q].$gte;
                         params.push($gt);
                         if(q.indexOf('.')>0){
-                            wh = `${wh} AND ${q} >= ? `;
+                            wh = `${wh} ${op} ${q} >= ? `;
                         }else{
-                            wh = `${wh} AND ${table}.${q} >= ? `;
+                            wh = `${wh} ${op} ${table}.${q} >= ? `;
                         }
                     }
 
                     if(selection[q].$lt){
-                        var $lt = selection[q].$lt
+                        $lt = selection[q].$lt;
                         params.push($lt);
                         if(q.indexOf('.')>0){
-                            wh = `${wh} AND ${q} < ? `;
+                            wh = `${wh} ${op} ${q} < ? `;
                         }else{
-                            wh = `${wh} AND ${table}.${q} < ? `;
+                            wh = `${wh} ${op} ${table}.${q} < ? `;
                         }
                     }
 
                     if(selection[q].$lte){
-                        var $lt = selection[q].$lte
+                        $lt = selection[q].$lte;
                         params.push($lt);
                         if(q.indexOf('.')>0){
-                            wh = `${wh} AND ${q} <= ? `;
+                            wh = `${wh} ${op} ${q} <= ? `;
                         }else{
-                            wh = `${wh} AND ${table}.${q} <= ? `;
+                            wh = `${wh} ${op} ${table}.${q} <= ? `;
                         }
                     }
 
@@ -500,11 +501,11 @@ let Query = class{
             return this.updateQ(data,callback);
         }else{
             return new Promise((resolve,reject)=>{
-                this.updateQ(data,(error,results)=>{
+                this.updateQ(data,(error,results,dt)=>{
                     if(error){
                         reject(error);
                     }else{
-                        resolve(results);
+                        resolve(dt);
                     }
 
                 });
