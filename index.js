@@ -505,7 +505,7 @@ let Query = class{
                     if(error){
                         reject(error);
                     }else{
-                        resolve(dt);
+                        resolve(results);
                     }
 
                 });
